@@ -105,5 +105,5 @@ Sistem çalıştığında Swagger UI üzerinden interaktif testler yapabilirsini
 
 Ana Endpoint'ler
 POST /users/register - Yeni kullanıcı kaydı.
-POST /questions/generate-from-file - Yüklenen dosyadan soru seti üretir.
+POST /questions/generate-from-file - Yüklenen dosyadan soru seti üretir.vz
 POST /summary/generate-from-file - Yüklenen dosyanın akademik özetini çıkarır.
