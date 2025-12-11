@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: noto_db
+    environment:
+      POSTGRES_USER: noto_user
+      POSTGRES_PASSWORD: supergizlisifre
+      POSTGRES_DB: noto_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

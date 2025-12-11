@@ -1,0 +1,13 @@
+# Sanal Ortamlar (Gerek yok, zaten bizde var)
+venv/
+.venv/
+
+# Çevre Değişkenleri (ŞİFRELER BURADA, GÖNDERME!)
+.env
+
+# PyCharm Ayar Dosyaları (Gereksiz kalabalık)
+.idea/
+
+# Python Önbellek Dosyaları
+__pycache__/
+*.pyc
