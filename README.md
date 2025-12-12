@@ -14,18 +14,26 @@ Bu projede yüksek GPU maliyetlerini minimize etmek ve veri güvenliğini sağla
 * **Veri Güvenliği (Local):** Hassas kullanıcı verileri ve iş mantığı yerel sunucularda (On-Premise) işlenir.
 * **Yüksek Hesaplama (Cloud):** Yoğun işlem gücü gerektiren LLM (Large Language Model) çıkarımları, güvenli tüneller aracılığıyla bulut tabanlı GPU kümeleri (Google Colab/Cloud) üzerinde gerçekleştirilir.
 
+```markdown
 ### Sistem Akış Şeması
-*(Aşağıdaki diyagram sistemin çalışma mantığını gösterir)*
+*(Sistemin hibrit çalışma yapısı)*
 
-```mermaid
-graph LR
-    Client["Kullanıcı Arayüzü"] -->|HTTP/JSON| Backend["FastAPI Sunucusu (Local)"]
-    Backend -->|SQL| DB[("PostgreSQL")]
-    Backend -->|Secure Tunnel| AI_Worker["AI Motoru - Google Colab A100"]
-    AI_Worker -->|Inference| Model["Trendyol-LLM-7b"]
-    Model -->|Generated Text| AI_Worker
-    AI_Worker -->|Response| Backend
-    Backend -->|Result| Client
+```text
+[Kullanıcı Arayüzü]
+       │
+       │ (HTTP/JSON)
+       ▼
++-----------------------+          +-------------------------+
+|  FastAPI Sunucusu     | <------> |      PostgreSQL DB      |
+|      (Local)          |          +-------------------------+
++-----------------------+
+       │
+       │ (Secure Tunnel)
+       ▼
++-----------------------+          +-------------------------+
+|      AI Motoru        | -------> |    Trendyol-LLM-7b      |
+| (Google Colab A100)   | <------- |      (Inference)        |
++-----------------------+          +-------------------------+
 
 🚀 Temel Özellikler
 
