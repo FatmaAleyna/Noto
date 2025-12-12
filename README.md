@@ -14,7 +14,6 @@ Bu projede yüksek GPU maliyetlerini minimize etmek ve veri güvenliğini sağla
 * **Veri Güvenliği (Local):** Hassas kullanıcı verileri ve iş mantığı yerel sunucularda (On-Premise) işlenir.
 * **Yüksek Hesaplama (Cloud):** Yoğun işlem gücü gerektiren LLM (Large Language Model) çıkarımları, güvenli tüneller aracılığıyla bulut tabanlı GPU kümeleri (Google Colab/Cloud) üzerinde gerçekleştirilir.
 
-```markdown
 ### Sistem Akış Şeması
 *(Sistemin hibrit çalışma yapısı)*
 
