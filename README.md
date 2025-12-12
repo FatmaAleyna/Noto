@@ -14,53 +14,20 @@ Bu projede yüksek GPU maliyetlerini minimize etmek ve veri güvenliğini sağla
 * **Veri Güvenliği (Local):** Hassas kullanıcı verileri ve iş mantığı yerel sunucularda (On-Premise) işlenir.
 * **Yüksek Hesaplama (Cloud):** Yoğun işlem gücü gerektiren LLM (Large Language Model) çıkarımları, güvenli tüneller aracılığıyla bulut tabanlı GPU kümeleri (Google Colab/Cloud) üzerinde gerçekleştirilir.
 
-### Sistem Akış Şeması
+### 🔄 Sistem Akış Şeması
 *(Sistemin hibrit çalışma yapısı)*
 
-[Kullanıcı Arayüzü]
-       │
-       │ (HTTP/JSON)
-       ▼
-+-----------------------+          +-------------------------+
-|  FastAPI Sunucusu     | <------> |      PostgreSQL DB      |
-|      (Local)          |          +-------------------------+
-+-----------------------+
-       │
-       │ (Secure Tunnel)
-       ▼
-+-----------------------+          +-------------------------+
-|      AI Motoru        | -------> |    Trendyol-LLM-7b      |
-| (Google Colab A100)   | <------- |      (Inference)        |
-+-----------------------+          +-------------------------+
-
-
-🚀 Temel Özellikler
-
-Otonom Soru Üretimi: Ders notlarından çoktan seçmeli veya klasik sınav soruları üretir.
-Akıllı Özetleme: Uzun akademik metinleri analiz ederek kritik noktaları özetler.
-Türkçe NLP Optimizasyonu: Projenin AI katmanında, Türkçe dili için optimize edilmiş Trendyol-LLM-7b-chat-dpo modelini fine-tune ederek entegre ettim.
-Maliyet Etkin Çözüm: Pahalı GPU sunucuları yerine dağıtık ve hibrit bir yapı kurarak operasyonel maliyeti %80 oranında düşürdüm.
-
-🛠 Teknik Altyapı
-Alan              Teknoloji                            Açıklama
-Backend           Python, FastAPI                     Yüksek performanslı asenkron
-APIAI             ModelHugging Face, Trendyol-LLM     Doğal Dil İşleme ve Üretken Yapay Zeka
-Docker            Cloudflare                          TunnelServis izolasyonu ve güvenli tünelleme
-Database          PostgreSQL                          İlişkisel veri ve kullanıcı yönetimi
-
-⚙️ Kurulum ve Çalıştırma
-
-Projeyi yerel ortamınızda test etmek için:
-
-1. Repoyu Klonlayın
-git clone [https://github.com/FatmaAleyna/Noto.git](https://github.com/FatmaAleyna/Noto.git)
+```mermaid
+graph LR
+    A[Kullanıcı Arayüzü] -->|HTTP/JSON| B[FastAPI Sunucusu Local]
+    B -->|SQL| C[(PostgreSQL DB)]
+    B -->|Secure Tunnel| D[AI Motoru Google Colab A100]
+    D -->|Inference| E[Trendyol-LLM-7b]
+    E -->|Generated Text| D
+    D -->|Response| B
+    B -->|Result| A
+🚀 Temel ÖzelliklerOtonom Soru Üretimi: Ders notlarından çoktan seçmeli veya klasik sınav soruları üretir.Akıllı Özetleme: Uzun akademik metinleri analiz ederek kritik noktaları özetler.Türkçe NLP Optimizasyonu: Projenin AI katmanında, Türkçe dili için optimize edilmiş Trendyol-LLM-7b-chat-dpo modelini fine-tune ederek entegre ettim.Maliyet Etkin Çözüm: Pahalı GPU sunucuları yerine dağıtık ve hibrit bir yapı kurarak operasyonel maliyeti %80 oranında düşürdüm.🛠 Teknik AltyapıAlanTeknolojiAçıklamaBackendPython, FastAPIYüksek performanslı asenkron APIAI ModelHugging Face, Trendyol-LLMDoğal Dil İşleme ve Üretken Yapay ZekaInfrastructureDocker, Cloudflare TunnelServis izolasyonu ve güvenli tünellemeDatabasePostgreSQLİlişkisel veri ve kullanıcı yönetimi⚙️ Kurulum ve ÇalıştırmaProjeyi yerel ortamınızda test etmek için:1. Repoyu KlonlayınBashgit clone [https://github.com/FatmaAleyna/Noto.git](https://github.com/FatmaAleyna/Noto.git)
 cd Noto
-
-2. Gereksinimleri Yükleyin
-pip install -r requirements.txt
-
-3. Backend Servisini Başlatın
-uvicorn main:app --reload
-
-4. AI Worker Bağlantısı
-Not: AI motoru harici bir GPU üzerinde çalışıyorsa, .env dosyasında AI_SERVICE_URL parametresini tünel adresiyle güncelleyin.
+2. Gereksinimleri YükleyinBashpip install -r requirements.txt
+3. Backend Servisini BaşlatınBashuvicorn main:app --reload
+4. AI Worker BağlantısıNot: AI motoru harici bir GPU üzerinde çalışıyorsa, .env dosyasında AI_SERVICE_URL parametresini tünel adresiyle güncelleyin.
