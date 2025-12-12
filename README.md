@@ -1,42 +1,96 @@
-# Noto - Otonom Eğitim Asistanı 📚
+✨ Noto – Otonom Eğitim Asistanı
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.95-009688?style=for-the-badge&logo=fastapi)
-![Hugging Face](https://img.shields.io/badge/LLM-Trendyol%207b-yellow?style=for-the-badge&logo=huggingface)
-![Architecture](https://img.shields.io/badge/Architecture-Hybrid%20Microservices-purple?style=for-the-badge)
+Eğitim içeriklerini anlayan, özetleyen ve sınav sorularına dönüştüren yapay zekâ platformu.
 
-**Noto**, eğitim materyallerini (ders notları, makaleler, akademik metinler) doğal dil işleme (NLP) teknikleriyle analiz eden; eğitimciler ve öğrenciler için otonom olarak **Sınav Soruları** ve **Kapsamlı Özetler** üreten yeni nesil bir yapay zeka platformudur.
+<p align="center"> <img src="https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python"> <img src="https://img.shields.io/badge/FastAPI-High%20Performance-009688?style=for-the-badge&logo=fastapi"> <img src="https://img.shields.io/badge/LLM-Trendyol%207B-yellow?style=for-the-badge&logo=huggingface"> <img src="https://img.shields.io/badge/Architecture-Hybrid%20Microservices-purple?style=for-the-badge"> </p>
+🚀 Noto Nedir?
 
----
+Noto, ders notlarını, makaleleri ve akademik metinleri analiz ederek:
 
-## 🏗 Mimari Yaklaşım: Hibrit Mikroservis Mimarisi
+🎯 Otonom sınav soruları üretir
 
-Bu projede yüksek GPU maliyetlerini minimize etmek ve veri güvenliğini sağlamak amacıyla kendi tasarladığım **Hibrit Mikroservis Mimarisi** (Hybrid Microservices Architecture) yapısını kullandım.
+📘 Kapsamlı ve anlamlı özetler çıkarır
 
-* **Veri Güvenliği (Local):** Hassas kullanıcı verileri ve iş mantığı yerel sunucularda (On-Premise) işlenir.
-* **Yüksek Hesaplama (Cloud):** Yoğun işlem gücü gerektiren LLM (Large Language Model) çıkarımları, güvenli tüneller aracılığıyla bulut tabanlı GPU kümeleri (Google Colab/Cloud) üzerinde gerçekleştirilir.
+🧠 Türkçe diline optimize edilmiş LLM modelleriyle çalışır
 
-### 🔄 Sistem Akış Şeması
-*(Sistemin hibrit çalışma yapısı)*
+⚡ Hibrit mimarisi sayesinde hızlı, güvenli ve düşük maliyetli bir çözüm sunar
 
-```text
+Eğitimciler, öğrenciler ve akademik içerik üreten herkes için tasarlanmış yeni nesil bir yapay zeka eğitim asistanıdır.
+
+🏗 Mimari Yapı: Hibrit Mikroservis Mimarisi
+
+Bu projede, veri güvenliği ve maliyet optimizasyonu için özel olarak tasarlanmış Hybrid Microservices Architecture yaklaşımı kullanılmıştır.
+
+🔐 Neden Hibrit?
+Bileşen	Konum	Açıklama
+API & İş Mantığı	Local (On-Premise)	Kullanıcı verileri ve tüm kritik iş mantığı lokal sunucularda çalışır.
+AI–LLM Çalışmaları	Cloud GPU	Ağır hesaplamalar Google Colab/Cloud gibi GPU ortamlarına taşınır.
+İletişim	Cloudflare Tunnel	Güvenli ve izole bir bağlantı oluşturur.
+🔄 Sistem Akış Diyagramı
 +-------------------+       HTTP/JSON       +--------------------------+
 | Kullanıcı Arayüzü | <-------------------> | FastAPI Sunucusu (Local) |
 +-------------------+                       +--------------------------+
                                                          |
-                                                         | (SQL)
+                                                         | SQL
                                                          v
-                                              +---------------------+
-                                              |    PostgreSQL DB    |
-                                              +---------------------+
+                                              +----------------------+
+                                              |    PostgreSQL DB     |
+                                              +----------------------+
                                                          |
-                                                         | (Secure Tunnel)
+                                                         | Secure Tunnel
                                                          v
-+-------------------+       Inference       +--------------------------+
-|  Trendyol-LLM-7b  | <-------------------> | AI Motoru (Google Colab) |
++-------------------+      Inference       +--------------------------+
+| Trendyol-LLM-7B   | <-------------------> | AI Worker (Cloud GPU)   |
 +-------------------+                       +--------------------------+
-🚀 Temel ÖzelliklerOtonom Soru Üretimi: Ders notlarından çoktan seçmeli veya klasik sınav soruları üretir.Akıllı Özetleme: Uzun akademik metinleri analiz ederek kritik noktaları özetler.Türkçe NLP Optimizasyonu: Projenin AI katmanında, Türkçe dili için optimize edilmiş Trendyol-LLM-7b-chat-dpo modelini fine-tune ederek entegre ettim.Maliyet Etkin Çözüm: Pahalı GPU sunucuları yerine dağıtık ve hibrit bir yapı kurarak operasyonel maliyeti %80 oranında düşürdüm.🛠 Teknik AltyapıAlanTeknolojiAçıklamaBackendPython, FastAPIYüksek performanslı asenkron APIAI ModelHugging Face, Trendyol-LLMDoğal Dil İşleme ve Üretken Yapay ZekaInfrastructureDocker, Cloudflare TunnelServis izolasyonu ve güvenli tünellemeDatabasePostgreSQLİlişkisel veri ve kullanıcı yönetimi⚙️ Kurulum ve ÇalıştırmaProjeyi yerel ortamınızda test etmek için:1. Repoyu KlonlayınBashgit clone [https://github.com/FatmaAleyna/Noto.git](https://github.com/FatmaAleyna/Noto.git)
+
+⚙️ Özellikler
+📝 Otonom Soru Üretimi
+
+Çoktan seçmeli
+
+Klasik/teorik sorular
+
+Bloom taksonomisine uygun zorluk seviyeleri
+
+📚 Akıllı Özetleme
+
+Uzun metinlerden anlam bütünlüğü bozulmadan özet çıkarır.
+
+Temel fikirleri, argümanları ve kritik noktaları yakalar.
+
+🧠 Türkçe NLP İçin Optimize Edilmiş AI
+
+Trendyol-LLM-7b-chat-dpo modeli üzerine fine-tuning yapılmıştır.
+
+Türkçe semantik anlayışı güçlendirilmiştir.
+
+💸 Maliyet Odaklı Tasarım
+
+GPU gerektiren işlemler buluta taşınarak %80 maliyet tasarrufu sağlar.
+
+🛠 Teknik Altyapı
+Katman	Teknoloji	Açıklama
+Backend	Python, FastAPI	Yüksek performanslı, asenkron API
+AI Engine	Hugging Face, Trendyol LLM	Özet ve soru üretim modeli
+Veritabanı	PostgreSQL	Kullanıcı & içerik saklama
+Altyapı	Docker, Cloudflare Tunnel	Servis izolasyonu ve güvenli bağlantı
+Dağıtım	Hybrid Microservices	Lokal API + Cloud GPU Worker
+🚀 Kurulum & Çalıştırma
+1️⃣ Repoyu Klonlayın
+git clone https://github.com/FatmaAleyna/Noto.git
 cd Noto
-2. Gereksinimleri YükleyinBashpip install -r requirements.txt
-3. Backend Servisini BaşlatınBashuvicorn main:app --reload
-4. AI Worker BağlantısıNot: AI motoru harici bir GPU üzerinde çalışıyorsa, .env dosyasında AI_SERVICE_URL parametresini tünel adresiyle güncelleyin.
+
+2️⃣ Gereksinimleri Yükleyin
+pip install -r requirements.txt
+
+3️⃣ Backend’i Başlatın
+uvicorn main:app --reload
+
+4️⃣ AI Worker Bağlantısını Yapılandırın
+
+.env dosyasını açın ve:
+
+AI_SERVICE_URL=https://senin-cloudflare-tunneling-adresin
+
+
+Cloud GPU üzerinde çalışan AI worker bu URL üzerinden bağlanacaktır.
