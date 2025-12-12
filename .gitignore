@@ -11,3 +11,5 @@ venv/
 # Python Önbellek Dosyaları
 __pycache__/
 *.pyc
+
+docker-compose.yml
