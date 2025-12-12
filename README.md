@@ -7,6 +7,8 @@
 
 **Noto**, eğitim materyallerini (ders notları, makaleler, akademik metinler) doğal dil işleme (NLP) teknikleriyle analiz eden; eğitimciler ve öğrenciler için otonom olarak **Sınav Soruları** ve **Kapsamlı Özetler** üreten yeni nesil bir yapay zeka platformudur.
 
+---
+
 ## 🏗 Mimari Yaklaşım: Hibrit Mikroservis Mimarisi
 
 Bu projede yüksek GPU maliyetlerini minimize etmek ve veri güvenliğini sağlamak amacıyla kendi tasarladığım **Hibrit Mikroservis Mimarisi** (Hybrid Microservices Architecture) yapısını kullandım.
@@ -17,7 +19,7 @@ Bu projede yüksek GPU maliyetlerini minimize etmek ve veri güvenliğini sağla
 ### 🔄 Sistem Akış Şeması
 *(Sistemin hibrit çalışma yapısı)*
 
-
+```text
 +-------------------+       HTTP/JSON       +--------------------------+
 | Kullanıcı Arayüzü | <-------------------> | FastAPI Sunucusu (Local) |
 +-------------------+                       +--------------------------+
@@ -33,37 +35,8 @@ Bu projede yüksek GPU maliyetlerini minimize etmek ve veri güvenliğini sağla
 +-------------------+       Inference       +--------------------------+
 |  Trendyol-LLM-7b  | <-------------------> | AI Motoru (Google Colab) |
 +-------------------+                       +--------------------------+
-
-
-🚀 Temel Özellikler
-
-Otonom Soru Üretimi: Ders notlarından çoktan seçmeli veya klasik sınav soruları üretir.
-
-Akıllı Özetleme: Uzun akademik metinleri analiz ederek kritik noktaları özetler.
-
-Türkçe NLP Optimizasyonu: Projenin AI katmanında, Türkçe dili için optimize edilmiş Trendyol-LLM-7b-chat-dpo modelini fine-tune ederek entegre ettim.
-
-Maliyet Etkin Çözüm: Pahalı GPU sunucuları yerine dağıtık ve hibrit bir yapı kurarak operasyonel maliyeti %80 oranında düşürdüm.
-
-🛠 Teknik Altyapı
-Alan              Teknoloji                            Açıklama
-Backend           Python, FastAPI                      Yüksek performanslı asenkron     
-APIAI             ModelHugging Face, Trendyol-LLM      Doğal Dil İşleme ve Üretken Yapay Zeka
-Infrastructure    Docker, Cloudflare                   TunnelServis izolasyonu ve güvenli tünelleme    
-Database          PostgreSQL                           İlişkisel veri ve kullanıcı yönetimi
-
-⚙️ Kurulum ve Çalıştırma
-Projeyi yerel ortamınızda test etmek için:
-
-1. Repoyu Klonlayın
-    git clone [https://github.com/FatmaAleyna/Noto.git](https://github.com/FatmaAleyna/Noto.git)
+🚀 Temel ÖzelliklerOtonom Soru Üretimi: Ders notlarından çoktan seçmeli veya klasik sınav soruları üretir.Akıllı Özetleme: Uzun akademik metinleri analiz ederek kritik noktaları özetler.Türkçe NLP Optimizasyonu: Projenin AI katmanında, Türkçe dili için optimize edilmiş Trendyol-LLM-7b-chat-dpo modelini fine-tune ederek entegre ettim.Maliyet Etkin Çözüm: Pahalı GPU sunucuları yerine dağıtık ve hibrit bir yapı kurarak operasyonel maliyeti %80 oranında düşürdüm.🛠 Teknik AltyapıAlanTeknolojiAçıklamaBackendPython, FastAPIYüksek performanslı asenkron APIAI ModelHugging Face, Trendyol-LLMDoğal Dil İşleme ve Üretken Yapay ZekaInfrastructureDocker, Cloudflare TunnelServis izolasyonu ve güvenli tünellemeDatabasePostgreSQLİlişkisel veri ve kullanıcı yönetimi⚙️ Kurulum ve ÇalıştırmaProjeyi yerel ortamınızda test etmek için:1. Repoyu KlonlayınBashgit clone [https://github.com/FatmaAleyna/Noto.git](https://github.com/FatmaAleyna/Noto.git)
 cd Noto
-
-2. Gereksinimleri Yükleyin
-   pip install -r requirements.txt
-
-3. Backend Servisini Başlatın
-   uvicorn main:app --reload
-
-4. AI Worker Bağlantısı
-Not: AI motoru harici bir GPU üzerinde çalışıyorsa, .env dosyasında AI_SERVICE_URL parametresini tünel adresiyle güncelleyin.
+2. Gereksinimleri YükleyinBashpip install -r requirements.txt
+3. Backend Servisini BaşlatınBashuvicorn main:app --reload
+4. AI Worker BağlantısıNot: AI motoru harici bir GPU üzerinde çalışıyorsa, .env dosyasında AI_SERVICE_URL parametresini tünel adresiyle güncelleyin.
